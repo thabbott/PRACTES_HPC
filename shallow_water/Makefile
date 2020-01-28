@@ -24,15 +24,6 @@ LDFLAGS=-lpng -lm
 loon: loon.c ${DEPS}
 	${CC} -o $@ ${CPPFLAGS} loon.c ${LDFLAGS}
 
-vortices: vortices.c ${DEPS}
-	${CC} -o $@ ${CPPFLAGS} vortices.c ${LDFLAGS}
-
-create_input: create_input.c ${DEPS}
-	${CC} -o $@ ${CPPFLAGS} create_input.c ${LDFLAGS}
-	./create_input
-
 clean:
-	-rm create_input
 	-rm loon
-	-rm vortices
 	-rm output/*.png
