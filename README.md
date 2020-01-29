@@ -59,7 +59,7 @@ This takes around 1 second on my laptop---much faster than the Python program!
 
 These two experiments provide the basis for a hypothesis:
 
-### Programs run faster if they compile to machine code
+### Initial hypothesis: programs run faster if they compile to machine code
 
 We are scientists, so let's test this hypothesis by collecting more data. Specifically, let's measure the time to solution in two other programming languages: Java (which runs on a virtual machine) and Julia (which is compiled to machine code).
 
@@ -82,7 +82,24 @@ julia> @time find_longest_sequence(1000000)
 ```
 On my laptop, this also takes about 20 seconds. (The first call to ``find_longest_sequence`` is to trigger Julia's just-in-time compiler so that our measurement doesn't include the time needed for the compiler to run.)
 
-This new data suggests that our hypothesis is incomplete. Like Python, Java runs on a virtual machine, but it runs much more quickly. Additionally, Julia runs much slower than C (and comparable to Java) even though it compiles to machine code.
+This new data suggests that our hypothesis is incomplete. Like Python, Java runs on a virtual machine, but it runs much more quickly. Additionally, Julia runs much slower than C (and comparable to Java) even though it compiles to machine code. So what are we missing?
+
+### Type systems and performance
+
+Computer processors have no inherent notion of types: they can manipulate bits in registers, but they cannot tell whether the bits in a register represent an integer or a floating point number. Instead, this type information has to be encoded in the instructions used to execute a program. If we want to add two integer values, the bits in two registers must be added with an instruction for integer addition; if we want to add two floating point values, the bits in two registers must be added with an instruction for floating point addition.
+
+C and Java are both "statically-typed" languages, which means that types are known at compile time (when machine code or machine-independent code objects are generated). As a result, a statement like ``a + b`` can be executed efficiently: with e.g. an integer addition instruction if ``a`` and ``b`` are integers, or a floating point instruction if ``a`` and ``b`` are floats.
+
+Julia and Python, on the other hand, are "dynamically-typed", which means that types are only known once the program starts running. As a result, a statement like ``a + b`` incurs some additional overhead: the program first has to inspect the values stored inside ``a`` and ``b`` to determine their types before executing the correct addition instruction. Much like the overhead incurred by running a virtual machine, this overhead means that programs written in dynamically-typed languages often execute less quickly than statically-typed languages.
+
+Knowing this allows us to generate a refined hypothesis:
+
+### Refined hypothesis: programs run faster if they compile to machine code and/or if types are known at compile time
+
+This hypothesis fits our data: 
+- the Python program is slow because it is dynamically-typed and runs on a virtual machine
+- the C program is fast because it is statically-typed and compiles to machine code
+- the Java and Julia programs are somewhere inbetween because Java is statically-typed but runs on a virtual machine and Julia is dynamically-typed but compiles to machine code
 
 ## Exercise 1: 
 
