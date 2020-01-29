@@ -195,7 +195,7 @@ int py = 1;                         // Processors (y)
 $ make
 $ mpirun -n 1 ./loon
 ```
-<img src="img/loon1/loon_256x256_000_00030.png" width=32%><\img>
+<img src="img/loon1/loon_256x256_000_00030.png" width=32%></img>
 
 #### 2 processors
 ```C
@@ -208,9 +208,41 @@ int py = 1;                         // Processors (y)
 $ make
 $ mpirun -n 2 ./loon
 ```
-<img src="img/loon2/loon_256x256_000_00030.png" width=32%><\img>&nbsp
-<img src="img/loon2/loon_256x256_001_00030.png" width=32%><\img>
+<img src="img/loon2/loon_256x256_000_00030.png" width=32%></img></br>
+<img src="img/loon2/loon_256x256_001_00030.png" width=32%></img>
 
 #### 4 processors
+```C
+int KX = 128;                       // Grid points per processor (x)
+int KY = 128;                       // Grid points per processor (y)
+int px = 2;                         // Processors (x)
+int py = 2;                         // Processors (y)
+```
+```bash
+$ make
+$ mpirun -n 4 ./loon
+```
+<img src="img/loon4/loon_256x256_000_00030.png" width=16%></img>
+<img src="img/loon4/loon_256x256_001_00030.png" width=16%></img></br>
+<img src="img/loon4/loon_256x256_002_00030.png" width=16%></img>
+<img src="img/loon4/loon_256x256_003_00030.png" width=16%></img>
 
 #### 8 processors
+```C
+int KX = 64;                        // Grid points per processor (x)
+int KY = 128;                       // Grid points per processor (y)
+int px = 4;                         // Processors (x)
+int py = 2;                         // Processors (y)
+```
+```bash
+$ make
+$ mpirun -n 8 ./loon
+```
+<img src="img/loon8/loon_256x256_000_00030.png" width=16%></img>
+<img src="img/loon8/loon_256x256_001_00030.png" width=16%></img></br>
+<img src="img/loon8/loon_256x256_002_00030.png" width=16%></img>
+<img src="img/loon8/loon_256x256_003_00030.png" width=16%></img></br>
+<img src="img/loon8/loon_256x256_004_00030.png" width=16%></img>
+<img src="img/loon8/loon_256x256_005_00030.png" width=16%></img></br>
+<img src="img/loon8/loon_256x256_006_00030.png" width=16%></img>
+<img src="img/loon8/loon_256x256_007_00030.png" width=16%></img></br>
