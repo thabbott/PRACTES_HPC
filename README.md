@@ -246,3 +246,13 @@ $ mpirun -n 8 ./loon
 <img src="img/loon8/loon_256x256_005_00030.png" width=16%></img></br>
 <img src="img/loon8/loon_256x256_006_00030.png" width=16%></img>
 <img src="img/loon8/loon_256x256_007_00030.png" width=16%></img></br>
+
+### Parallel performance
+
+How should we expect parallelization to impact the performance of the shallow water model? If we define the speedup (*s*) introduced by parallelization as the ratio of the computation time with one processor (*t1*) and the computation time with *N* processors (*tN*), and we assume that
+1. the total problem size (model resolution and number of time steps) is the same regardless of the number of processors,
+2. the entire computation can be parallelized,
+3. the computational load can be perfectly balanced across all processors, and
+4. parallelization doesn't introduce any additional overhead,
+then we expect that *s* = *N* (i.e. the program should run twice as fast with 2 processors, 4 times as fast with 4 processors, and so on). This level of speedup (*s* = *N*) is called "perfect strong scaling".
+
