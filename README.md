@@ -140,16 +140,16 @@ The ``lorenz_system`` folder contains Julia code for simulating the Lorenz syste
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\frac{\mathrm{d}x}{\mathrm{d}t}&space;=&space;\sigma&space;(y&space;-&space;x)&space;\\&space;\frac{\mathrm{d}y}{\mathrm{d}t}&space;=&space;x&space;(\rho&space;-&space;z)&space;-&space;y&space;\\&space;\frac{\mathrm{d}z}{\mathrm{d}t}&space;=&space;x&space;y&space;-&space;\beta&space;z" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\frac{\mathrm{d}x}{\mathrm{d}t}&space;=&space;\sigma&space;(y&space;-&space;x)&space;\\&space;\frac{\mathrm{d}y}{\mathrm{d}t}&space;=&space;x&space;(\rho&space;-&space;z)&space;-&space;y&space;\\&space;\frac{\mathrm{d}z}{\mathrm{d}t}&space;=&space;x&space;y&space;-&space;\beta&space;z" title="\frac{\mathrm{d}x}{\mathrm{d}t} = \sigma (y - x) \\ \frac{\mathrm{d}y}{\mathrm{d}t} = x (\rho - z) - y \\ \frac{\mathrm{d}z}{\mathrm{d}t} = x y - \beta z" /></a>
 
-Open the ``lorenz_system`` folder (you can use the binder link above), then start a Julia console and run a simulation with
+Open the ``lorenz_system`` folder (you can use the binder link above), then start a Julia console and run a simulation for 1000 time steps with
 ```julia
 julia> include("simulations.jl")
-julia> ensemble = animate_ensemble()
+julia> ensemble = animate_ensemble(1000)
 ```
-This will create a large set of points in (x,y,z) with slightly different initial values that, over time, gradually disperse over a butterfly-shaped attractor. Watch the simulation for as long as you want and then stop it with Kernel->Interrupt Kernel in the menu bar (you may have to click it twice). Finally, benchmark the performance of the simulation by running
+This will create a large set of points in (x,y,z) with slightly different initial values that, over time, gradually disperse over a butterfly-shaped attractor. Once the animation stops, bechmark the performance of the simulation by running
 ```julia
 julia> @time benchmark(ensemble)
 ```
-to measure the time required to advance the model 100 time steps.
+to measure the time required to advance the model another 1000 time steps.
 
 The simulation code you just ran doesn't include any type hints for the compiler and so runs much less quickly than it should. Your job is to speed up the simulation as much as possible by adding type hints to the code in ``lorenz.jl``. (Hint: focus initially on adding type annotations to the fields in the ``Position`` and ``LorenzEnsemble`` structs. The ``typeof`` function will probably be useful; running e.g.
 ```julia
