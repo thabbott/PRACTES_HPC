@@ -123,7 +123,7 @@ julia> include("collatz_typed.jl")
 julia> find_longest_sequence(1)
 julia> @time find_longest_sequence(1000000)
 ```
-On my laptop, this also takes about 2 seconds---comparable to C code!
+On my laptop, this takes about 2 seconds---comparable to C code!
 
 ## Part 1 main points:
 
