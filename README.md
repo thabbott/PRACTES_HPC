@@ -134,6 +134,23 @@ On my laptop, this takes about 2 seconds---comparable to C code!
 
 ## Exercise 1:
 
+The ``lorenz_system`` folder contains Julia code for simulating the Lorenz system, a set of three coupled ODEs
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\frac{\mathrm{d}x}{\mathrm{d}t}&space;=&space;\sigma&space;(y&space;-&space;x)&space;\\&space;\frac{\mathrm{d}y}{\mathrm{d}t}&space;=&space;x&space;(\rho&space;-&space;z)&space;-&space;y&space;\\&space;\frac{\mathrm{d}z}{\mathrm{d}t}&space;=&space;x&space;y&space;-&space;\beta&space;z" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\frac{\mathrm{d}x}{\mathrm{d}t}&space;=&space;\sigma&space;(y&space;-&space;x)&space;\\&space;\frac{\mathrm{d}y}{\mathrm{d}t}&space;=&space;x&space;(\rho&space;-&space;z)&space;-&space;y&space;\\&space;\frac{\mathrm{d}z}{\mathrm{d}t}&space;=&space;x&space;y&space;-&space;\beta&space;z" title="\frac{\mathrm{d}x}{\mathrm{d}t} = \sigma (y - x) \\ \frac{\mathrm{d}y}{\mathrm{d}t} = x (\rho - z) - y \\ \frac{\mathrm{d}z}{\mathrm{d}t} = x y - \beta z" /></a>
+
+Open the ``lorenz_system`` folder via the binder link below, then open a terminal and start a Julia REPL (**don't** open a Julia console) and run a simulation with
+```julia
+julia> include("simulations.jl")
+julia> ensemble = animate_ensemble()
+```
+This will create a large set of points in (x,y,z) with slightly different initial values that, over time, gradually disperse over a butterfly-shaped attractor. Watch the simulation for as long as you want and then use Ctrl-C to interrupt it. Finally, benchmark the performance of the simulation by running
+```julia
+julia> @time benchmark(ensemble)
+```
+to measure the time required to advance the model 100 time steps.
+
+The simulation code you just ran doesn't include any type hints for the compiler and so runs much less quickly than it should. Your job is to speed up the simulation as much as possible by adding type hints to the code in ``lorenz.jl``. (Note: you will have to restart the Julia REPL before the 
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/thabbott/PRACTES_HPC/master?urlpath=lab&filepath=lorenz_system)
 
 ## Part 2: parallel computing
