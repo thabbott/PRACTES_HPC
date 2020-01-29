@@ -161,7 +161,7 @@ will return the type of the ``N`` field in the ``LorenzEnsemble`` struct.) Once 
 
 There are many scientific applications for which even the fastest single-processor programs aren't fast enough. In these cases, we can turn to parallel programs that share the work of a computation among multiple processors.
 
-We're going to organize our discussion of parallel computing around a program that simulates the shallow water equations. The model initializes itself by reading an image and using it to create ripples on the water surface. The ripples quickly disperse into a field of waves (left two images) and, on much longer timescales, the fluid itself is rearranged (right two images, with the GIF accelerated 100x).
+We're going to organize our discussion of parallel computing around a model that simulates the shallow water equations. The model initializes itself by reading an image and using it to create ripples on the water surface. The ripples quickly disperse into a field of waves (left two images) and, on much longer timescales, the fluid itself is rearranged (right two images, with the GIF accelerated 100x).
 
 <img src="shallow_water/loon_h.png" width=24%></img>
 <img src="shallow_water/loon_h.gif" width=24%></img>
