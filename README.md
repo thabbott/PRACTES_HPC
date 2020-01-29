@@ -175,7 +175,7 @@ int KY = 256;                       // Grid points per processor (y)
 int px = 1;                         // Processors (x)
 int py = 1;                         // Processors (y)
 ```
-``KX`` and ``KY`` control the number of model grid points controlled by each processor, and ``px`` and ``py`` control the number of chunks that the x- and y-dimensions of the domain are split into. For the model to work correctly, ``KX*px`` must be equal to the width (in pixels) of the input image, and ``KX*py`` must be equal to the input image height. Additionally, the model must be run (after compiling) on the correct number of processors using the commands
+``KX`` and ``KY`` control the number of model grid points controlled by each processor, and ``px`` and ``py`` control the number of chunks that the x- and y-dimensions of the domain are split into. For the model to work correctly, ``KX*px`` must be equal to the height (in pixels) of the input image, and ``KX*py`` must be equal to the input image width. Additionally, the model must be run (after compiling) on the correct number of processors using the commands
 ```bash
 $ make
 $ mpirun -n N ./loon
@@ -195,9 +195,21 @@ int py = 1;                         // Processors (y)
 $ make
 $ mpirun -n 1 ./loon
 ```
-
+<img src="img/loon1/loon_256x256_000_00030.png" width=32%><\img>
 
 #### 2 processors
+```C
+int KX = 128;                       // Grid points per processor (x)
+int KY = 256;                       // Grid points per processor (y)
+int px = 2;                         // Processors (x)
+int py = 1;                         // Processors (y)
+```
+```bash
+$ make
+$ mpirun -n 2 ./loon
+```
+<img src="img/loon2/loon_256x256_000_00030.png" width=32%><\img>&nbsp
+<img src="img/loon2/loon_256x256_001_00030.png" width=32%><\img>
 
 #### 4 processors
 
