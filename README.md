@@ -134,4 +134,6 @@ On my laptop, this takes about 2 seconds---comparable to C code!
 
 ## Exercise 1:
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/thabbott/PRACTES_HPC/master?urlpath=lab&filepath=lorenz_system)
+
 ## Part 2: parallel computing
