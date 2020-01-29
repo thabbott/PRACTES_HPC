@@ -145,7 +145,7 @@ Open the ``lorenz_system`` folder (you can use the binder link above), then star
 julia> include("simulations.jl")
 julia> ensemble = animate_ensemble()
 ```
-This will create a large set of points in (x,y,z) with slightly different initial values that, over time, gradually disperse over a butterfly-shaped attractor. Watch the simulation for as long as you want and then stop it with Kernel->Interrupt Kernel in the menu bar. Finally, benchmark the performance of the simulation by running
+This will create a large set of points in (x,y,z) with slightly different initial values that, over time, gradually disperse over a butterfly-shaped attractor. Watch the simulation for as long as you want and then stop it with Kernel->Interrupt Kernel in the menu bar (you may have to click it twice). Finally, benchmark the performance of the simulation by running
 ```julia
 julia> @time benchmark(ensemble)
 ```
