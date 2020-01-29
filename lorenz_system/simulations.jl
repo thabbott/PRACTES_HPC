@@ -1,5 +1,6 @@
 using Random
 using PyPlot
+using IJulia
 
 include("lorenz.jl")
 
@@ -42,6 +43,8 @@ function animate_ensemble(; N = 10000)
             scat.set_ydata(z)
             ax.draw_artist(scat)
             fig.canvas.blit(ax.bbox)
+            IJulia.clear_output(true)
+            display(fig)
             sleep(0.00001)
         end
     catch exception
