@@ -5,12 +5,12 @@ using IJulia
 include("lorenz.jl")
 
 @doc raw"""
-    function animate_ensemble(; N = 1000)
+    function animate_ensemble(nt; N = 1000)
 
 Animate the evolution of an ensemble of `N` points with similar
-(but not identical) initial conditions
+(but not identical) initial conditions for nt time steps
 """
-function animate_ensemble(; N = 1000)
+function animate_ensemble(nt; N = 1000)
 
     # Create the ensemble
     ensemble = LorenzEnsemble(N)
@@ -35,19 +35,16 @@ function animate_ensemble(; N = 1000)
     
     # Integrate while plotting
     dt = 0.01
-    try
-        while true
-            advance_ensemble!(ensemble, dt)
-            fill!(x, z, ensemble)
-            scat.set_xdata(x)
-            scat.set_ydata(z)
-            ax.draw_artist(scat)
-            fig.canvas.blit(ax.bbox)
-            IJulia.clear_output(true)
-            display(fig)
-            sleep(0.00001)
-        end
-    catch exception
+    for t = 1:nt
+       advance_ensemble!(ensemble, dt)
+       fill!(x, z, ensemble)
+       scat.set_xdata(x)
+       scat.set_ydata(z)
+       ax.draw_artist(scat)
+       fig.canvas.blit(ax.bbox)
+       IJulia.clear_output(true)
+       display(fig)
+       sleep(0.00001)
     end
 
     # Plot and return final state
