@@ -168,7 +168,7 @@ We're going to organize our discussion of parallel computing around a model (wri
 <img src="img/loon_pv.png" width=24%></img>
 <img src="img/loon_pv.gif" width=24%></img>
 
-This model can be run on several processors in parallel by splitting the model domain into several chunks and assigning one processor to each chunk. The parallelism is controlled by setting parameters on lines 14-17 of ``loon.c``:
+The work required to run the model can be shared by several processors by splitting the model domain into several chunks and assigning one processor to each chunk. The parallelism is controlled by setting parameters on lines 14-17 of ``loon.c``:
 ```C
 int KX = 256;                       // Grid points per processor (x)
 int KY = 256;                       // Grid points per processor (y)
