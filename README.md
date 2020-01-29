@@ -134,6 +134,8 @@ On my laptop, this takes about 2 seconds---comparable to C code!
 
 ## Exercise 1:
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/thabbott/PRACTES_HPC/master?urlpath=lab)
+
 The ``lorenz_system`` folder contains Julia code for simulating the Lorenz system, a set of three coupled ODEs
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\frac{\mathrm{d}x}{\mathrm{d}t}&space;=&space;\sigma&space;(y&space;-&space;x)&space;\\&space;\frac{\mathrm{d}y}{\mathrm{d}t}&space;=&space;x&space;(\rho&space;-&space;z)&space;-&space;y&space;\\&space;\frac{\mathrm{d}z}{\mathrm{d}t}&space;=&space;x&space;y&space;-&space;\beta&space;z" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\frac{\mathrm{d}x}{\mathrm{d}t}&space;=&space;\sigma&space;(y&space;-&space;x)&space;\\&space;\frac{\mathrm{d}y}{\mathrm{d}t}&space;=&space;x&space;(\rho&space;-&space;z)&space;-&space;y&space;\\&space;\frac{\mathrm{d}z}{\mathrm{d}t}&space;=&space;x&space;y&space;-&space;\beta&space;z" title="\frac{\mathrm{d}x}{\mathrm{d}t} = \sigma (y - x) \\ \frac{\mathrm{d}y}{\mathrm{d}t} = x (\rho - z) - y \\ \frac{\mathrm{d}z}{\mathrm{d}t} = x y - \beta z" /></a>
@@ -150,7 +152,5 @@ julia> @time benchmark(ensemble)
 to measure the time required to advance the model 100 time steps.
 
 The simulation code you just ran doesn't include any type hints for the compiler and so runs much less quickly than it should. Your job is to speed up the simulation as much as possible by adding type hints to the code in ``lorenz.jl``. (Note: you will have to restart the Julia REPL before the 
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/thabbott/PRACTES_HPC/master?urlpath=lab)
 
 ## Part 2: parallel computing
