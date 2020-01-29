@@ -132,7 +132,6 @@ int main(int argc, char **argv) {
 
     // Integrate
     para_printf("Starting integration (%d time steps)\n", NT);
-    int iprint = 1;
     start = paralib_time();
     for (int it = 1; it <= NT; it++) {
         swm_integrate_ssprk3(swm, aux, diff, lift, filter, dt, topo);
