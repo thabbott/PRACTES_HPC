@@ -264,5 +264,9 @@ In the shallow water model, communication overhead scales with the total perimet
 
 ## Part 2 main points:
 
+- Parallelization can speed up program execution, but communication overhead prevents parallel programs from running arbitrarily fast.
+- (Developing low-communication parallel algorithms is a very active research area.)
+- (As an alternative to sharing work between several processors, many scientific programs can be sped up by running on GPUs. I don't have much experience with GPU programming, but many other people in the deparment (e.g. Ali Ramadhan) do.)
+
 ## Exercise 2:
 
