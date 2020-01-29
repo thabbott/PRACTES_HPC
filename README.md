@@ -158,3 +158,8 @@ julia> typeof(ensemble.N)
 will return the type of the ``N`` field in the ``LorenzEnsemble`` struct.) Once you've added some type hints, restart the Julia console and re-benchmark the simulation to see how much faster it's become!
 
 ## Part 2: parallel computing
+
+![Initial height field](loon_h.png)
+![Height field](loon_h.gif)
+![Initial PV field](loon_pv.png)
+![PV field](loon_pv.gif)
