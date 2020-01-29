@@ -310,7 +310,7 @@ void gridtopo_fill_buffer(field2_t field, direction2_t direction,
             break;
         case WEST:
 
-            for (int i = 0; i < field.KX; i++) {
+            for (int i = 0; i < field.KY; i++) {
                 boundary = field_get_element_boundary(
                         field, field.KX - 1, i, EAST);
                 for (int k = 0; k < DG_NP; k++) {
@@ -330,7 +330,7 @@ void gridtopo_extract_buffer(field2_t field, direction2_t direction,
     int K = (direction == NORTH || direction == SOUTH ?
             field.KX : field.KY);
     int ibuf = 0;
-    for (int i = 0; i < field.KX; i++) {
+    for (int i = 0; i < field.K; i++) {
         for (int k = 0; k < DG_NP; k++) {
             field.boundaries[direction][i].mat[k] = buffer[ibuf];
             ibuf++;
