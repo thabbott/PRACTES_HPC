@@ -158,3 +158,26 @@ julia> typeof(ensemble.N)
 will return the type of the ``N`` field in the ``LorenzEnsemble`` struct.) Once you've added some type hints, restart the Julia console and re-benchmark the simulation to see how much faster it's become!
 
 ## Part 2: parallel computing
+
+There are many scientific applications for which even the fastest single-processor programs aren't fast enough. In these cases, we can turn to parallel programs that share the work of a computation among multiple processors.
+
+We're going to organize our discussion of parallel computing around a model that simulates the shallow water equations. The model initializes itself by reading an image and using it to create ripples on the water surface. The ripples quickly disperse into a field of waves (left two images) and, on much longer timescales, the fluid itself is rearranged (right two images, with the GIF accelerated 100x).
+
+<img src="shallow_water/loon_h.png" width=24%></img>
+<img src="shallow_water/loon_h.gif" width=24%></img>
+<img src="shallow_water/loon_pv.png" width=24%></img>
+<img src="shallow_water/loon_pv.gif" width=24%></img>
+
+This model can be run on several processors in parallel by splitting the model domain into several chunks and assigning one processor to each chunk. The parallelism is controlled by setting parameters on lines 14-17 of ``loon.c``:
+```C
+int KX = 256;                       // Grid points per processor (x)
+int KY = 256;                       // Grid points per processor (y)
+int px = 1;                         // Processors (x)
+int py = 1;                         // Processors (y)
+```
+``KX`` and ``KY`` control the number of model grid points controlled by each processor, and ``px`` and ``py`` control the number of chunks that the x- and y-dimensions of the domain are split into. For the model to work correctly, ``KX*px`` must be equal to the width (in pixels) of the input image, and ``KX*py`` must be equal to the input image height. Additionally, the model must be run (after compiling) on the correct number of processors using the commands
+```bash
+$ make
+$ mpirun -n N ./loon
+```
+with the parameter ``N`` equal to ``px*py``.
