@@ -36,7 +36,7 @@ Different types (or "architectures") of processors use different instructions se
 
 Python programs are never converted directly to machine code. Instead, they are translated into machine-independent code objects that run on the "Python virtual machine"---which is itself a program, often written in C. Because the translation process doesn't depend on the instruction set used by the computer hardware, the Python virtual machine makes it much easier to run Python on a variety of processor architectures. However, the extra layer of software between the program and the hardware introduces some overhead that slows program execution.
 
-Start a python interpreter and measure the time to solution for *N* = 1,000,000 by running
+Start a Python REPL and measure the time to solution for *N* = 1,000,000 by running
 ```python
 >>> from collatz import *
 >>> import timeit
@@ -56,6 +56,33 @@ $ gcc collatz.c -o collatz
 $ time ./collatz 1000000
 ```
 This takes around 1 second on my laptop---much faster than the Python program!
+
+These two experiments provide the basis for a hypothesis:
+
+### Programs run faster if they compile to machine code
+
+We are scientists, so let's test this hypothesis by collecting more data. Specifically, let's measure the time to solution in two other programming languages: Java (which runs on a virtual machine) and Julia (which is compiled to machine code).
+
+### Language 3: Java
+
+From the command line, compile the Java program (to machine-independent code objects, not machine code!) and run the program (with ``-Xint`` to disable just-in-time compilation to machine code).
+```bash
+$ javac Collatz.java
+$ time java -Xint Collatz 1000000
+```
+On my laptop, this takes about 20 seconds.
+
+### Language 4: Julia
+
+Start a Julia REPL and measure the time to solution by running
+```julia
+julia> include("collatz.jl")
+julia> find_longest_sequence(1)
+julia> @time find_longest_sequence(1000000)
+```
+On my laptop, this also takes about 20 seconds. (The first call to ``find_longest_sequence`` is to trigger Julia's just-in-time compiler so that our measurement doesn't include the time needed for the compiler to run.)
+
+This new data suggests that our hypothesis is incomplete. Like Python, Java runs on a virtual machine, but it runs much more quickly. Additionally, Julia runs much slower than C (and comparable to Java) even though it compiles to machine code.
 
 ## Exercise 1: 
 
