@@ -161,7 +161,7 @@ will return the type of the ``N`` field in the ``LorenzEnsemble`` struct.) Once 
 
 There are many scientific applications for which even the fastest single-processor programs aren't fast enough. In these cases, we can turn to parallel programs that share the work of a computation among multiple processors.
 
-We're going to organize our discussion of parallel computing around a model that simulates the shallow water equations. The model initializes itself by reading an image and using it to create ripples on the water surface. The ripples quickly disperse into a field of waves (left two images) and, on much longer timescales, the fluid itself is rearranged (right two images, with the GIF accelerated 100x).
+We're going to organize our discussion of parallel computing around a model (written in C) that simulates the shallow water equations. The model initializes itself by reading an image and using it to create ripples on the water surface. The ripples quickly disperse into a field of waves (left two images) and, on much longer timescales, the fluid itself is rearranged (right two images, with the GIF accelerated 100x).
 
 <img src="shallow_water/loon_h.png" width=24%></img>
 <img src="shallow_water/loon_h.gif" width=24%></img>
@@ -181,3 +181,24 @@ $ make
 $ mpirun -n N ./loon
 ```
 with the parameter ``N`` equal to ``px*py``.
+
+The model is configured so that each processor writes its own output images when run in parallel, and looking at these images can help to clarify how changing parameters in ``loon.c`` re-distributes work over one or more processors. The following images show that model height field after 30 timesteps on 1, 2, 4, and 8 processors.
+
+#### 1 processor
+```C
+int KX = 256;                       // Grid points per processor (x)
+int KY = 256;                       // Grid points per processor (y)
+int px = 1;                         // Processors (x)
+int py = 1;                         // Processors (y)
+```
+```bash
+$ make
+$ mpirun -n 1 ./loon
+```
+
+
+#### 2 processors
+
+#### 4 processors
+
+#### 8 processors
