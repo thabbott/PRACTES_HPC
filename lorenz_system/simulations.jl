@@ -5,7 +5,7 @@ using IJulia
 include("lorenz.jl")
 
 @doc raw"""
-    function animate_ensemble(; N = 10000)
+    function animate_ensemble(; N = 1000)
 
 Animate the evolution of an ensemble of `N` points with similar
 (but not identical) initial conditions
