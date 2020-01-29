@@ -159,7 +159,7 @@ will return the type of the ``N`` field in the ``LorenzEnsemble`` struct.) Once 
 
 ## Part 2: parallel computing
 
-![Initial height field](loon_h.png)
-![Height field](loon_h.gif)
-![Initial PV field](loon_pv.png)
-![PV field](loon_pv.gif)
+<img src="shallow_water/loon_h.png" width=20%></img>
+<img src="shallow_water/loon_h.gif" width=20%></img>
+<img src="shallow_water/loon_pv.png" width=20%></img>
+<img src="shallow_water/loon_pv.gif" width=20%></img>
