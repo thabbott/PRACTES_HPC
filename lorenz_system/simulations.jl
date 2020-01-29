@@ -10,7 +10,7 @@ include("lorenz.jl")
 Animate the evolution of an ensemble of `N` points with similar
 (but not identical) initial conditions
 """
-function animate_ensemble(; N = 10000)
+function animate_ensemble(; N = 1000)
 
     # Create the ensemble
     ensemble = LorenzEnsemble(N)
