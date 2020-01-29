@@ -30,11 +30,11 @@ add r1, r2, r3      (add the data in registers 1 and 2 and store the result in r
 store r3, retval    (store the data in register 3 in a special "return value" location in RAM)
 ```
 
-Different types of processors use different instructions sets, so the same program will be converted to different machine code if it runs on e.g. an Intel processor (which uses the x86 instruction set) and an IBM processor (which uses the Power instruction set). Generally speaking, programs will run more quickly if they require a relatively short sequence of instructions.
+Different types (or "architectures") of processors use different instructions sets, so the same program will be converted to different machine code if it runs on e.g. an Intel processor (which uses the x86 instruction set) and an IBM processor (which uses the Power instruction set). Generally speaking, programs will run more quickly if they require a relatively short sequence of instructions.
 
 ### Language 1: Python
 
-Python programs are never converted directly to machine code. Instead, they are translated into machine-independent code objects that run on the "Python virtual machine"---which is itself a program, often written in C. Using the Python virtual machine has many advantages. If you want to add a new Python language feature, you don't have to figure out how to convert 
+Python programs are never converted directly to machine code. Instead, they are translated into machine-independent code objects that run on the "Python virtual machine"---which is itself a program, often written in C. Because the translation process doesn't depend on the instruction set used by the computer hardware, the Python virtual machine makes it much easier to run Python on a variety of processor architectures. However, the extra layer of software between the program and the hardware introduces some overhead that slows program execution.
 
 Start a python interpreter and measure the time to solution for *N* = 1,000,000 by running
 ```python
@@ -48,7 +48,7 @@ This takes 1-2 minutes on my laptop and tells me that the longest sequence start
 
 ### Language 2: C
 
-C is a compiled language. This means...
+C is a compiled language. This means that C programs are first converted all the way to machine code by running them through a program called a compiler, and the machine code is then executed directly by the processor. This avoids virtual machine overhead and produces programs that execute quickly. However, it also requires developing and maintaining many versions of the C compiler, since a different version is required for every processor architecture.
 
 From the command line, compile the C program and measure the time to solution for *N* = 1,000,000 by running
 ```bash
@@ -56,10 +56,6 @@ $ gcc collatz.c -o collatz
 $ time ./collatz 1000000
 ```
 This takes around 1 second on my laptop---much faster than the Python program!
-
-### Understanding this result
-
-Some of you may have heard that C is faster than Python because C is "compiled" whereas Python is "interpreted". This is part (**but not all!**) of the explanation
 
 ## Exercise 1: 
 
