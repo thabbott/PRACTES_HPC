@@ -151,11 +151,10 @@ julia> @time benchmark(ensemble)
 ```
 to measure the time required to advance the model 100 time steps.
 
-The simulation code you just ran doesn't include any type hints for the compiler and so runs much less quickly than it should. Your job is to speed up the simulation as much as possible by adding type hints to the code in ``lorenz.jl``. (The ``typeof`` function will probably be useful; running e.g.
+The simulation code you just ran doesn't include any type hints for the compiler and so runs much less quickly than it should. Your job is to speed up the simulation as much as possible by adding type hints to the code in ``lorenz.jl``. (Hint: focus initially on adding type annotations to the fields in the ``Position`` and ``LorenzEnsemble`` structs. The ``typeof`` function will probably be useful; running e.g.
 ```julia
-julia> typeof(ensemble)
-julia> typeof(ensemble.r)
+julia> typeof(ensemble.N)
 ```
-will return the types of some of the variables used in the simulation.) Once you've added some type hints, restart the Julia REPL and re-benchmark the simulation to see how much faster it's become!
+will return the type of the ``N`` field in the ``LorenzEnsemble`` struct.) Once you've added some type hints, restart the Julia console and re-benchmark the simulation to see how much faster it's become!
 
 ## Part 2: parallel computing
