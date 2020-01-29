@@ -163,10 +163,10 @@ There are many scientific applications for which even the fastest single-process
 
 We're going to organize our discussion of parallel computing around a model (written in C) that simulates the shallow water equations. The model initializes itself by reading an image and using it to create ripples on the water surface. The ripples quickly disperse into a field of waves (left two images) and, on much longer timescales, the fluid itself is rearranged (right two images, with the GIF accelerated 100x).
 
-<img src="shallow_water/loon_h.png" width=24%></img>
-<img src="shallow_water/loon_h.gif" width=24%></img>
-<img src="shallow_water/loon_pv.png" width=24%></img>
-<img src="shallow_water/loon_pv.gif" width=24%></img>
+<img src="img/loon_h.png" width=24%></img>
+<img src="img/loon_h.gif" width=24%></img>
+<img src="img/loon_pv.png" width=24%></img>
+<img src="img/loon_pv.gif" width=24%></img>
 
 This model can be run on several processors in parallel by splitting the model domain into several chunks and assigning one processor to each chunk. The parallelism is controlled by setting parameters on lines 14-17 of ``loon.c``:
 ```C
