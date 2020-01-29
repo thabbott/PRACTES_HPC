@@ -126,8 +126,11 @@ julia> @time find_longest_sequence(1000000)
 On my laptop, this also takes about 2 seconds---comparable to C code!
 
 ## Part 1 takeaways:
+
 - If you want to write fast code, use a language that compiles to machine code **and** provide the compiler with compile-time type information.
-- Julia allows Python-like interactivity 
+- Julia fits both these requirements without sacrificing Python-like interactivity
+- (Python can also be quite fast if you use libraries that are implemented in C. This includes most of the scientific python stack: numpy, scipy, xarray, etc.)
+- (Compiled code can become even faster, albeit at the expense of longer compile times, if you enable compiler optimizations.)
 
 ## Exercise 1: 
 
