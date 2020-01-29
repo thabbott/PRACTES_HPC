@@ -151,6 +151,6 @@ to measure the time required to advance the model 100 time steps.
 
 The simulation code you just ran doesn't include any type hints for the compiler and so runs much less quickly than it should. Your job is to speed up the simulation as much as possible by adding type hints to the code in ``lorenz.jl``. (Note: you will have to restart the Julia REPL before the 
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/thabbott/PRACTES_HPC/master?urlpath=lab&filepath=lorenz_system)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/thabbott/PRACTES_HPC/master?urlpath=lab)
 
 ## Part 2: parallel computing
