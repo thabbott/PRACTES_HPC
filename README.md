@@ -308,12 +308,12 @@ $
 ```
 which means that you've been granted an allocation, or you may get a message telling you that the scheduler is waiting for resources
 ```bash
-$ srun --pty/bin/bash
+$ srun --pty /bin/bash
 srun: job 12 queued and waiting for resources
 ```
 which means that you have to wait for other users to finish using their allocation before you can start using yours. Once you are granted an allocation, you'll see a message and a new prompt
 ```bash
-$ srun --pty/bin/bash
+$ srun --pty /bin/bash
 srun: job 12 queued and waiting for resources
 srun: job 12 has been allocated resources
 $ 
