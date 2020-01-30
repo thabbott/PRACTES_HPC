@@ -334,4 +334,6 @@ Then type ``exit`` to end your allocation and allow another user to start theirs
 
 We'll use the benchmarking results to update this plot (which currently only contains a dotted line for perfect strong scaling) with the actual parallel speedup realized by the shallow water model.
 
-<img align="center" src="img/shallow_water_benchmarks.png" width=70%></img>
+<p align="center">
+<img src="img/shallow_water_benchmarks.png" width=70%></img>
+</p>
