@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     double h0 = 0.6;                    // Initial height anomaly (m)
     double H = 6.0;                     // Mean height (m)
     double Ld = sqrt(g*H)/f;            // Deformation radius (m)
-    double dx = 10.0*Ld/KX;             // Grid spacing (m)
+    double dx = 10.0*Ld/(KX*px);        // Grid spacing (m)
     double CFL = 0.8;                   // CFL number (nondim)
     double dt = CFL * dx / sqrt(g * H); // Time step (s)
 
