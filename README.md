@@ -170,8 +170,8 @@ We're going to organize our discussion of parallel computing around a model (wri
 
 The work required to run the model can be shared by several processors by splitting the model domain into several chunks and assigning one processor to each chunk. The parallelism is controlled by setting parameters on lines 14-17 of ``loon.c``:
 ```C
-int KX = 256;                       // Grid points per processor (x)
-int KY = 256;                       // Grid points per processor (y)
+int KX = 384;                       // Grid points per processor (x)
+int KY = 384;                       // Grid points per processor (y)
 int px = 1;                         // Processors (x)
 int py = 1;                         // Processors (y)
 ```
@@ -182,12 +182,12 @@ $ mpirun -n N ./loon
 ```
 with the parameter ``N`` equal to ``px*py``.
 
-The model is configured so that each processor writes its own output images when run in parallel, and looking at these images can help to clarify how changing parameters in ``loon.c`` re-distributes work over one or more processors. The following images show that model height field after 30 timesteps on 1, 2, 4, and 8 processors.
+The model is configured so that each processor writes its own output images when run in parallel, and looking at these images can help to clarify how changing parameters in ``loon.c`` re-distributes work over one or more processors. The following images show that model height field after 50 timesteps on 1, 2, 4, and 8 processors.
 
 #### 1 processor
 ```C
-int KX = 256;                       // Grid points per processor (x)
-int KY = 256;                       // Grid points per processor (y)
+int KX = 384;                       // Grid points per processor (x)
+int KY = 384;                       // Grid points per processor (y)
 int px = 1;                         // Processors (x)
 int py = 1;                         // Processors (y)
 ```
@@ -195,12 +195,12 @@ int py = 1;                         // Processors (y)
 $ make
 $ mpirun -n 1 ./loon
 ```
-<img src="img/loon1/loon_256x256_000_00030.png" width=32%></img>
+<img src="img/loon1/loon_384x384_000_00050.png" width=32%></img>
 
 #### 2 processors
 ```C
-int KX = 128;                       // Grid points per processor (x)
-int KY = 256;                       // Grid points per processor (y)
+int KX = 192;                       // Grid points per processor (x)
+int KY = 384;                       // Grid points per processor (y)
 int px = 2;                         // Processors (x)
 int py = 1;                         // Processors (y)
 ```
@@ -208,13 +208,13 @@ int py = 1;                         // Processors (y)
 $ make
 $ mpirun -n 2 ./loon
 ```
-<img src="img/loon2/loon_256x256_000_00030.png" width=32%></img></br>
-<img src="img/loon2/loon_256x256_001_00030.png" width=32%></img>
+<img src="img/loon2/loon_384x384_000_00050.png" width=32%></img></br>
+<img src="img/loon2/loon_384x384_001_00050.png" width=32%></img>
 
 #### 4 processors
 ```C
-int KX = 128;                       // Grid points per processor (x)
-int KY = 128;                       // Grid points per processor (y)
+int KX = 192;                       // Grid points per processor (x)
+int KY = 192;                       // Grid points per processor (y)
 int px = 2;                         // Processors (x)
 int py = 2;                         // Processors (y)
 ```
@@ -222,15 +222,15 @@ int py = 2;                         // Processors (y)
 $ make
 $ mpirun -n 4 ./loon
 ```
-<img src="img/loon4/loon_256x256_000_00030.png" width=16%></img>
-<img src="img/loon4/loon_256x256_001_00030.png" width=16%></img></br>
-<img src="img/loon4/loon_256x256_002_00030.png" width=16%></img>
-<img src="img/loon4/loon_256x256_003_00030.png" width=16%></img>
+<img src="img/loon4/loon_384x384_000_00050.png" width=16%></img>
+<img src="img/loon4/loon_384x384_001_00050.png" width=16%></img></br>
+<img src="img/loon4/loon_384x384_002_00050.png" width=16%></img>
+<img src="img/loon4/loon_384x384_003_00050.png" width=16%></img>
 
 #### 8 processors
 ```C
-int KX = 64;                        // Grid points per processor (x)
-int KY = 128;                       // Grid points per processor (y)
+int KX = 96;                        // Grid points per processor (x)
+int KY = 192;                       // Grid points per processor (y)
 int px = 4;                         // Processors (x)
 int py = 2;                         // Processors (y)
 ```
@@ -238,14 +238,14 @@ int py = 2;                         // Processors (y)
 $ make
 $ mpirun -n 8 ./loon
 ```
-<img src="img/loon8/loon_256x256_000_00030.png" width=16%></img>
-<img src="img/loon8/loon_256x256_001_00030.png" width=16%></img></br>
-<img src="img/loon8/loon_256x256_002_00030.png" width=16%></img>
-<img src="img/loon8/loon_256x256_003_00030.png" width=16%></img></br>
-<img src="img/loon8/loon_256x256_004_00030.png" width=16%></img>
-<img src="img/loon8/loon_256x256_005_00030.png" width=16%></img></br>
-<img src="img/loon8/loon_256x256_006_00030.png" width=16%></img>
-<img src="img/loon8/loon_256x256_007_00030.png" width=16%></img></br>
+<img src="img/loon8/loon_384x384_000_00050.png" width=16%></img>
+<img src="img/loon8/loon_384x384_001_00050.png" width=16%></img></br>
+<img src="img/loon8/loon_384x384_002_00050.png" width=16%></img>
+<img src="img/loon8/loon_384x384_003_00050.png" width=16%></img></br>
+<img src="img/loon8/loon_384x384_004_00050.png" width=16%></img>
+<img src="img/loon8/loon_384x384_005_00050.png" width=16%></img></br>
+<img src="img/loon8/loon_384x384_006_00050.png" width=16%></img>
+<img src="img/loon8/loon_384x384_007_00050.png" width=16%></img></br>
 
 ### Parallel performance
 
