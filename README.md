@@ -270,3 +270,66 @@ In the shallow water model, communication overhead scales with the total perimet
 
 ## Exercise 2: benchmarking the shallow water model
 
+To start, log onto the google cloud machine (details will be provided during the session) and clone this repository. Go into the shallow water model directory
+```bash
+$ cd shallow_water
+```
+and compile and run the model
+```bash
+$ make
+$ mkdir output
+$ mpirun -n 1 ./loon
+```
+This will print a stream of information to the console including, at the end, the time each processor spends integrating the model. Save the executable as ``loon1``,
+```bash
+$ mv loon loon1
+```
+then pick some larger number of processors (2, 3, 4, 6, or 8) to run the model with. Change parameters in ``loon.c`` to use this number of processors, the recompile and run the model to make sure it works:
+```bash
+$ make
+$ mpirun -n N ./loon
+```
+then rename your executable
+```bash
+$ mv loon loonN
+```
+with N replaced by the number of processors you're using.
+
+Once everybody has their ``loon1`` and ``loonN`` compiled and working we'll start benchmarking the model. Since we don't want our results to be skewed by the number of users who happen to be running at any one time, we'll use a "scheduler" to control the number of users who can run at any one time. (Almost all large computer clusters use a scheduler of some kind; our cloud machine is running one called Slurm.)
+
+To request an allocation from the scheduler, run
+```bash
+$ srun --pty /bin/bash
+```
+One of two things may happen: you might immediately get a new prompt,
+```bash
+$ srun --pty /bin/bash
+$
+```
+which means that you've been granted an allocation, or you may get a message telling you that the scheduler is waiting for resources
+```bash
+$ srun --pty/bin/bash
+srun: job 12 queued and waiting for resources
+```
+which means that you have to wait for other users to finish using their allocation before you can start using yours. Once you are granted an allocation, you'll see a message and a new prompt
+```bash
+$ srun --pty/bin/bash
+srun: job 12 queued and waiting for resources
+srun: job 12 has been allocated resources
+$ 
+```
+
+Once you're granted an allocation, you can benchmark your models! To do this, run
+```bash
+$ mpirun -n 1 ./loon1
+$ mpirun -n N ./loonN
+```
+(with N replaced by the right number of processors) and report
+
+1. Your value of N,
+2. The processor time for loon1, and
+3. The average processor time for loonN
+
+Then type ``exit`` to end your allocation and allow another user to start theirs.
+
+We'll use the benchmarking results to update this plot (which currently only contains a dotted line for perfect strong scaling) with the actual parallel speedup realized by the shallow water model.
