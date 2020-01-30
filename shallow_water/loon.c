@@ -11,8 +11,8 @@
 int main(int argc, char **argv) {
 
     // Simulation parameters
-    int KX = 256;                       // Grid points per processor (x)
-    int KY = 256;                       // Grid points per processor (y)
+    int KX = 384;                       // Grid points per processor (x)
+    int KY = 384;                       // Grid points per processor (y)
     int px = 1;                         // Processors (x)
     int py = 1;                         // Processors (x)
     double g = 9.81;                    // Gravity (m/s)
@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     double dissipation_factor = 1e-3;   // Numerical flux dissipation
                                         // factor (0 = centered,
                                         // 1 = upwind)
-    char *expid = "loon_256x256";       // Experiment ID
+    char *expid = "loon_384x384";       // Experiment ID
     double h0 = 0.6;                    // Initial height anomaly (m)
     double H = 6.0;                     // Mean height (m)
     double Ld = sqrt(g*H)/f;            // Deformation radius (m)
@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
     double dt = CFL * dx / sqrt(g * H); // Time step (s)
 
     // Time stepping parameters
-    int NT = 100;
+    int NT = 50;
 
     // Timer
     double wtime = 0.0;
@@ -175,7 +175,7 @@ int main(int argc, char **argv) {
         para_printf("PNG write failed\n");
         return 3;
     }
-    para_printf("Bounds on initial values:\n");
+    para_printf("Bounds on final values:\n");
     fill_matrix_from_field2(mat, swm.h, weights);
     para_printf("%.2e < h < %.2e\n", 
             mat_minimum(mat), mat_maximum(mat));
